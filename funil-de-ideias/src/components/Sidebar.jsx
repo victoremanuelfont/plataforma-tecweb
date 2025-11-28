@@ -16,7 +16,7 @@ export function Sidebar() {
       {/* Logo da Empresa */}
       <div className="p-6 border-b border-blue-800">
         <h1 className="text-2xl font-extrabold text-white tracking-tight">
-          Simula.IA 🚀
+          Funil de Ideias 🚀
         </h1>
         <p className="text-xs text-blue-300 mt-1">Gestão de Inovação</p>
       </div>
