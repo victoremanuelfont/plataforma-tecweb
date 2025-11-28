@@ -1,7 +1,15 @@
 import { useNavigate } from 'react-router-dom';
+import { useIdeias } from '../context/IdeiasContext'; // <--- 1. Importando a memória
 
 export function Dashboard() {
   const navigate = useNavigate();
+  const { ideias } = useIdeias(); // <--- 2. Pegando a lista de ideias
+
+  // 3. Calculando os números reais (Matemática automática)
+  const total = ideias.length;
+  const emGeracao = ideias.filter(i => i.status === 'Geração').length;
+  const emDefinicao = ideias.filter(i => i.status === 'Em Definição').length;
+  const aprovadas = ideias.filter(i => i.status === 'Aprovada').length;
 
   return (
     <div className="p-8">
@@ -18,14 +26,15 @@ export function Dashboard() {
         </button>
       </div>
 
-      {/* Grid de KPIs (Indicadores) */}
+      {/* Grid de KPIs (Agora com números REAIS) */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
         
         {/* Card 1: Total */}
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200">
           <h3 className="text-gray-500 text-sm font-medium uppercase">Total de Ideias</h3>
           <div className="mt-2 flex items-baseline">
-            <span className="text-3xl font-extrabold text-gray-900">5</span>
+            {/* Variável dinâmica aqui */}
+            <span className="text-3xl font-extrabold text-gray-900">{total}</span>
             <span className="ml-2 text-sm text-green-600">💡 ativas</span>
           </div>
         </div>
@@ -34,7 +43,7 @@ export function Dashboard() {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-blue-500">
           <h3 className="text-blue-600 text-sm font-medium uppercase">Em Geração</h3>
           <div className="mt-2">
-            <span className="text-3xl font-extrabold text-gray-900">2</span>
+            <span className="text-3xl font-extrabold text-gray-900">{emGeracao}</span>
           </div>
         </div>
 
@@ -42,7 +51,7 @@ export function Dashboard() {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-yellow-500">
           <h3 className="text-yellow-600 text-sm font-medium uppercase">Em Definição</h3>
           <div className="mt-2">
-            <span className="text-3xl font-extrabold text-gray-900">1</span>
+            <span className="text-3xl font-extrabold text-gray-900">{emDefinicao}</span>
           </div>
         </div>
 
@@ -50,7 +59,7 @@ export function Dashboard() {
         <div className="bg-white p-6 rounded-lg shadow-sm border border-gray-200 border-l-4 border-l-green-500">
           <h3 className="text-green-600 text-sm font-medium uppercase">Aprovadas</h3>
           <div className="mt-2">
-            <span className="text-3xl font-extrabold text-gray-900">1</span>
+            <span className="text-3xl font-extrabold text-gray-900">{aprovadas}</span>
           </div>
         </div>
 
